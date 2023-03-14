@@ -20,6 +20,25 @@
     <div id="root"></div>
     <script type="text/babel">
 
+        const Movements = ({score: movs}) => {
+            return (
+                <div
+                    style = {{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        width: '900px',
+                        height: '100px',
+                        alignItems: 'center',
+                        fontSize: '30px',
+                        color: 'black',
+                    }}
+                >
+                    <div>Movimientos: {movs}</div>
+                </div>
+            )
+        }
+
         const Card = ({card}) => {
             return (
                 <div
@@ -71,6 +90,7 @@
                     >
                     {deck.map(card => <Card key={card.id} card={card} />)}
                 </div>
+                <Movements score={0} />
                 </div>
             )
         }
