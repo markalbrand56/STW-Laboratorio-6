@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laboratorio 6</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle, transparent 25%, #ffffff  26%),linear-gradient(45deg, transparent 46%, #000000 47%, #000000 52%, transparent 53%), linear-gradient(135deg, transparent 46%, #000000 47%, #000000 52%, transparent 53%);
+            background-size: 3em 3em;
+            background-color: #ffffff;
+            opacity: 1
+        }
+    </style>
+</head>
+<body >
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const Card = ({card}) => {
+            return (
+                <div
+                    style = {{
+                        backgroundImage: card.flipped ? `url(${card.name})` :  'url(./assets/img/bicycle_black_tiger.png)',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        height: '100%',
+                        width: '70%',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
+                    }}
+                ></div>
+            )
+        }
+        const Board = () => {
+            const cards = [
+                {id: 1, face: '', flipped: false},
+                {id: 2, face: '', flipped: false},
+                {id: 3, face: '', flipped: false},
+                {id: 4, face: '', flipped: false},
+                {id: 5, face: '', flipped: false},
+                {id: 6, face: '', flipped: false},
+                {id: 7, face: '', flipped: false},
+                {id: 8, face: '', flipped: false},
+            ]
+
+            const deck = [...cards, ...cards]
+
+            return (
+                <div
+                    style = {{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        display: 'flex',
+                        flexDirection: 'column',
+                    }}
+                >
+                    <div
+                        style = {{
+                            background: 'none',
+                            width: '900px',
+                            height: '900px',
+                            display: 'grid',
+                            gap : '10px',
+                            gridTemplateColumns: 'repeat(4, 1fr)',
+                            gridTemplateRows: 'repeat(4, 1fr)',
+                        }}
+                    >
+                    {deck.map(card => <Card key={card.id} card={card} />)}
+                </div>
+                </div>
+            )
+        }
+
+        ReactDOM.render(<Board />, document.getElementById('root'))
+    </script>
+</body>
+</html>
