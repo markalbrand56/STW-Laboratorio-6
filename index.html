@@ -80,6 +80,19 @@
             }, [])
 
             const first_card = React.useRef(null)
+
+            const unFlip = (id_1, id_2) => {
+                setDeck(prev => {
+                    const newDeck = [...prev]
+                    newDeck.forEach( (i) => {
+                        if (i.id === id_1 || i.id === id_2) {
+                            i.flipped = false
+                        }}
+                    )
+                    return newDeck
+                })
+            }
+
             const handleClick = (id) => {
                 console.log(id)
                 setDeck(prev => {
@@ -101,6 +114,11 @@
                             console.log('Match')
                         }else{
                             // TODO Unflip
+                            console.log(first_card.current.id)
+                            const fc_id = first_card.current.id
+                            setTimeout( () => {
+                                unFlip(fc_id, selected_card.id)
+                            }, 2000)
                         }
                         first_card.current = null
                     }
