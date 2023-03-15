@@ -43,7 +43,7 @@
             return (
                 <div
                     style = {{
-                        backgroundImage: card.flipped ? `url(${card.name})` :  'url(./assets/img/bicycle_black_tiger.png)',
+                        backgroundImage: card.flipped ? `url(${card.face})` :  'url(./assets/img/bicycle_black_tiger.png)',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         height: '100%',
@@ -56,14 +56,14 @@
         }
         const Board = () => {
             const cards = [
-                {id: 1, face: '', flipped: false},
-                {id: 2, face: '', flipped: false},
-                {id: 3, face: '', flipped: false},
-                {id: 4, face: '', flipped: false},
-                {id: 5, face: '', flipped: false},
-                {id: 6, face: '', flipped: false},
-                {id: 7, face: '', flipped: false},
-                {id: 8, face: '', flipped: false},
+                {id: 1, face: './assets/img/f_1.jpg', flipped: true},
+                {id: 2, face: './assets/img/f_2.jpg', flipped: true},
+                {id: 3, face: './assets/img/f_3.jpg', flipped: true},
+                {id: 4, face: './assets/img/f_4.jpg', flipped: true},
+                {id: 5, face: './assets/img/f_5.jpg', flipped: true},
+                {id: 6, face: './assets/img/f_6.jpg', flipped: true},
+                {id: 7, face: './assets/img/f_7.jpg', flipped: true},
+                {id: 8, face: './assets/img/f_8.jpg', flipped: true},
             ]
 
             const deck = [...cards, ...cards]
