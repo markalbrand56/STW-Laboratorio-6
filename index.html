@@ -71,6 +71,8 @@
                 ...cards,
                 ...cards.map(card => ({...card, id: card.id + 8}))
             ])
+            const [movements, setMovements] = React.useState(0)
+
             React.useEffect(() => {
                 setDeck(prev => {
                     const newDeck = prev.map(card => ({...card, flipped: false, found: false}))  // DEBUG
@@ -110,18 +112,24 @@
                         if (first_card.current.face === selected_card.face && first_card.current.id !== selected_card.id) {
                             first_card.current.found = true
                             selected_card.found = true
-                            // TODO Handle movements
+
                             console.log('Match')
+                            console.log(before)
+                            // verificar si todas las cartas estan encontradas
+                            const win = before.every(card => card.found)
+                            if (win) {
+                                console.log('You win')
+                            }
                         }else{
-                            // TODO Unflip
                             console.log(first_card.current.id)
                             const fc_id = first_card.current.id
                             setTimeout( () => {
                                 unFlip(fc_id, selected_card.id)
-                            }, 2000)
+                            }, 1000)
                         }
                         first_card.current = null
                     }
+                    setMovements(prev => prev + 1)
                     return before
                 })
             }
@@ -148,7 +156,7 @@
                     >
                     {deck.map(card => <Card key={card.id} card={card} onClick={handleClick} />)}
                 </div>
-                <Movements score={0} />
+                <Movements score={movements} />
                 </div>
             )
         }
