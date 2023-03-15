@@ -31,6 +31,7 @@
                         alignItems: 'center',
                         fontSize: '30px',
                         color: 'black',
+                        fontWeight: 'bold',
                     }}
                 >
                     <div>Movimientos: {movs}</div>
@@ -50,7 +51,7 @@
                         borderRadius: '5px',
                         cursor: 'pointer',
                         transition: 'transform 0.3s',
-                        transform: card.flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                        transform: card.flipped ? 'rotateY(0deg)' : 'rotateY(180deg)',
                     }}
                     onClick = {() => onClick(card.id)}
                 ></div>
