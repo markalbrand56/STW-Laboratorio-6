@@ -83,13 +83,28 @@
             const handleClick = (id) => {
                 console.log(id)
                 setDeck(prev => {
-                    const newDeck = prev.map(card => {
-                        if (card.id === id) {
-                            return {...card, flipped: !card.flipped}
+                    const before = [...prev]
+                    const selected_card = prev.find(card => card.id === id)
+
+                    if (selected_card.found) return before
+
+                    selected_card.flipped = !selected_card.flipped  // Se le da la vuelta
+
+                    if (first_card.current === null) {
+                        first_card.current = selected_card
+                        return before
+                    }else{
+                        if (first_card.current.face === selected_card.face && first_card.current.id !== selected_card.id) {
+                            first_card.current.found = true
+                            selected_card.found = true
+                            // TODO Handle movements
+                            console.log('Match')
+                        }else{
+                            // TODO Unflip
                         }
-                        return card
-                    })
-                    return newDeck
+                        first_card.current = null
+                    }
+                    return before
                 })
             }
 
