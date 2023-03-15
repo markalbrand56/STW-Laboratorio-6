@@ -19,9 +19,6 @@
 <body >
     <div id="root"></div>
     <script type="text/babel">
-
-        import React from "react";
-
         const Movements = ({score: movs}) => {
             return (
                 <div
@@ -41,7 +38,7 @@
             )
         }
 
-        const Card = ({card}) => {
+        const Card = ({card, onClick}) => {
             return (
                 <div
                     style = {{
@@ -53,6 +50,7 @@
                         borderRadius: '5px',
                         cursor: 'pointer',
                     }}
+                    onClick = {() => onClick(card.id)}
                 ></div>
             )
         }
@@ -75,11 +73,25 @@
             ])
             React.useEffect(() => {
                 setDeck(prev => {
-                    const newDeck = prev.map(card => ({...card, flipped: true}))  // DEBUG
+                    const newDeck = prev.map(card => ({...card, flipped: false, found: false}))  // DEBUG
                     newDeck.sort(() => Math.random() - 0.5)
                     return newDeck
                 })
             }, [])
+
+            const first_card = React.useRef(null)
+            const handleClick = (id) => {
+                console.log(id)
+                setDeck(prev => {
+                    const newDeck = prev.map(card => {
+                        if (card.id === id) {
+                            return {...card, flipped: !card.flipped}
+                        }
+                        return card
+                    })
+                    return newDeck
+                })
+            }
 
             return (
                 <div
@@ -101,7 +113,7 @@
                             gridTemplateRows: 'repeat(4, 1fr)',
                         }}
                     >
-                    {deck.map(card => <Card key={card.id} card={card} />)}
+                    {deck.map(card => <Card key={card.id} card={card} onClick={handleClick} />)}
                 </div>
                 <Movements score={0} />
                 </div>
