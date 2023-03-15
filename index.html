@@ -49,6 +49,8 @@
                         width: '70%',
                         borderRadius: '5px',
                         cursor: 'pointer',
+                        transition: 'transform 0.3s',
+                        transform: card.flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
                     }}
                     onClick = {() => onClick(card.id)}
                 ></div>
