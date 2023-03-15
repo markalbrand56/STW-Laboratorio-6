@@ -72,6 +72,7 @@
                 ...cards.map(card => ({...card, id: card.id + 8}))
             ])
             const [movements, setMovements] = React.useState(0)
+            const [win, setWin] = React.useState(false)
 
             React.useEffect(() => {
                 setDeck(prev => {
@@ -119,6 +120,7 @@
                             const win = before.every(card => card.found)
                             if (win) {
                                 console.log('You win')
+                                setWin(true)
                             }
                         }else{
                             console.log(first_card.current.id)
@@ -143,6 +145,18 @@
                         flexDirection: 'column',
                     }}
                 >
+                    {
+                        win &&
+                        <div style = {{
+                            fontSize: '50px',
+                            color: 'black',
+                            fontWeight: 'bold',
+                            marginBottom: '20px',
+                            background: 'white',
+                        }}>
+                            ¡Has ganado!
+                        </div>
+                    }
                     <div
                         style = {{
                             background: 'none',
@@ -157,6 +171,7 @@
                     {deck.map(card => <Card key={card.id} card={card} onClick={handleClick} />)}
                 </div>
                 <Movements score={movements} />
+
                 </div>
             )
         }
